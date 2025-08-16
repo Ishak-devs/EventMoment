@@ -1,7 +1,18 @@
 const mysql = require('mysql2');
 
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: ''
+});
 
-const pool = mysql.createPool({
+connection.query('CREATE DATABASE IF NOT EXISTS eventmoment', (err) => {
+  if (err) throw err;
+  console.log('Base de données créée !');
+  connection.end(); 
+});
+
+const pool = mysql.createPool({ //on appelle create pool pour la co
   host: 'localhost',     
   user: 'root', 
   password: '',
